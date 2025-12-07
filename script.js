@@ -4,24 +4,35 @@
     const taskInput = document.getElementById("task-input");
     const taskList = document.getElementById("task-list");
 
-    function addTask(){
-        const taskText = taskInput.value.trim();
-        if(taskText === "") alert("Please enter a task.");
+  function addTask() {
+    const taskInput = document.getElementById("task-input");
+    const taskList = document.getElementById("task-list");
+    const taskText = taskInput.value.trim();
 
-        if(taskText !== ""){
-            const listItem = document.createElement("li");
-            listItem.textContent = taskText;
-            const button = document.createElement("button");
-            button.textContent = "Remove";
-            button.className = 'remove-btn';
-           button.onclick(function(){
-                taskList.removeChild(listItem);
-           });
-           listItem.appendChild(button);
-           taskList.appendChild(listItem);
-           taskInput.value = "";
-        }
+    if (taskText !== "") {
+      // Create li element
+      const li = document.createElement("li");
+      li.textContent = taskText;
+
+      // Create Remove button
+      const removeBtn = document.createElement("button");
+      removeBtn.textContent = "Remove";
+      removeBtn.className = "remove-btn";
+
+      // When clicked, remove the li element
+      removeBtn.onclick = function () {
+        taskList.removeChild(li);
+      };
+
+      // Append button to li, and li to list
+      li.appendChild(removeBtn);
+      taskList.appendChild(li);
+
+      // Clear the input
+      taskInput.value = "";
     }
+  }
+
 
     addButton.addEventListener("click", addTask);
     taskInput.addEventListener("keypress", function(event){
